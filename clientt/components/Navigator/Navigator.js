@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Button,View } from "native-base";
+import { Button, View } from "native-base";
 import { Image } from "react-native-svg";
 import AddEvents from "../addEvents";
 import Favorite from "../favorite";
@@ -18,50 +18,43 @@ import EditProfile from "../../screens/AssociationHome/EditProfile";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Profilev from "../../screens/VolunteerHome/VHome";
 import { useNavigation } from "@react-navigation/native";
-import DHome from "../../screens/DisableHome/DHome"
-
+import DHome from "../../screens/DisableHome/DHome";
+// import Chat from "../chatRoom";
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
 const SettingsStack = createNativeStackNavigator();
 
 const TabNavigator = () => {
-  
-  const [userrole,setuserrole]=useState(null)
+  const [userrole, setuserrole] = useState(null);
   const getrole = async () => {
     try {
       const value = await AsyncStorage.getItem("user");
       if (value !== null) {
         const jsonValue = JSON.parse(value);
-        console.log("azizzzzzzzzzzzzzzzzzzzzzzzzzzzz",jsonValue.role);
-        setuserrole(jsonValue.role)
-       
+        console.log("azizzzzzzzzzzzzzzzzzzzzzzzzzzzz", jsonValue.role);
+        setuserrole(jsonValue.role);
       }
     } catch (err) {
       console.log(err);
     }
-
   };
 
+  useEffect(() => {
+    getrole();
+  }, []);
+  console.log("=======", userrole);
+  const test = () => {
+    if (userrole == "as") {
+      return Profile;
+    } else if (userrole == "vr") {
+      return Profilev;
+    } else {
+      return DHome;
+    }
+  };
 
-  
-useEffect(()=>{
-getrole()
-},[])
-console.log('=======',userrole);
-const test=()=>{
-  if (userrole=='as') {
-   return Profile 
-  } else if (userrole=='vr') {
-    return Profilev
-  }
-  else {
-   return DHome
-  }
-}
-
-  return ( 
-    
+  return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
@@ -73,8 +66,6 @@ const test=()=>{
           } else if (route.name === "profile") {
             iconName = focused ? "person" : "person";
           }
-         
-        
           // You can return any component that you like here!
           return <Ionicons name={iconName} size={size} color={color} />;
         },
@@ -83,16 +74,12 @@ const test=()=>{
         headerShown: false,
         tabBarShowLabel: false,
       })}
-
     >
-      
       <Tab.Screen name="Home" component={AddEvents} />
       <Tab.Screen name="map" component={Map} />
-      <Tab.Screen name="profile" component={ test() } /> 
+      {/* <Tab.Screen name="chat" component={Chat} /> */}
+      <Tab.Screen name="profile" component={test()} />
     </Tab.Navigator>
-    
-   
-
   );
 };
 export default TabNavigator;

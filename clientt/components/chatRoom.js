@@ -15,11 +15,12 @@ import {
 } from "firebase/firestore";
 // import { signOut } from "firebase/auth";
 import { authentication, database } from "../screens/firebase";
-console.log("🚀 ~ file: chatRoom.js:18 ~ authentication:", authentication);
+// console.log("🚀 ~ file: chatRoom.js:18 ~ authentication:", authentication);
 
 export default function Chat({ route }) {
   const [messages, setMessages] = useState([]);
-  // const name = route.params;
+  const name = route.params;
+  console.log("🚀 ~ file: chatRoom.js:23 ~ Chat ~ name:", name);
 
   // const onSignOut = () => {
   //   signOut(auth).catch((error) => console.log("Error logging out: ", error));
@@ -74,7 +75,7 @@ export default function Chat({ route }) {
       }}
       user={{
         _id: authentication?.currentUser?.email,
-        avatar: "https://i.pravatar.cc/300",
+        // avatar: "https://i.pravatar.cc/300",
       }}
     />
   );

@@ -54,16 +54,16 @@ const VisterProfile = ({ route }) => {
             <Box maxW="100%" maxH="690">
               <Box>
                 <AspectRatio w="100%" ratio={20 / 15}>
-                  <Image
+                  {/* <Image
                     resizeMode="contain"
                     source={{ uri: data.image }}
                     alt="image"
-                  />
+                  /> */}
                 </AspectRatio>
               </Box>
               <Stack p="3" space={5}>
                 <Stack space={3}>
-                  <Heading>{data.name}</Heading>
+                  {/* <Heading>{data.name}</Heading> */}
                   <View>
                     <Heading style={{ color: "#525252", fontSize: 20 }}>
                       <MaterialCommunityIcons
@@ -71,11 +71,11 @@ const VisterProfile = ({ route }) => {
                         size={24}
                         color="#525252"
                       />
-                      {data.email}
+                      {/* {data.email} */}
                     </Heading>
                   </View>
                 </Stack>
-                <Text style={{ fontSize: 16 }}>{data.description}</Text>
+                {/* <Text style={{ fontSize: 16 }}>{data.description}</Text> */}
               </Stack>
             </Box>
           </Box>
@@ -85,13 +85,13 @@ const VisterProfile = ({ route }) => {
   );
 };
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingTop: StatusBar.currentHeight,
-    },
-    scrollView: {
-      marginHorizontal: 20,
-    },
-  });
+  container: {
+    flex: 1,
+    paddingTop: StatusBar.currentHeight,
+  },
+  scrollView: {
+    marginHorizontal: 20,
+  },
+});
 
 export default VisterProfile;

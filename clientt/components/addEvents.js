@@ -59,7 +59,7 @@ const AddEvents = ({ route }) => {
 
   const getHandle = () => {
     axios
-      .get("http://192.168.104.2:3000/api/events")
+      .get("http://192.168.104.11:3000/api/events")
       .then((response) => {
         setData(response.data);
       })
@@ -70,7 +70,7 @@ const AddEvents = ({ route }) => {
 
   const getAssociation = () => {
     axios
-      .get("http://192.168.104.2:3000/api/associations")
+      .get("http://192.168.104.11:3000/api/associations")
       .then((response) => {
         setAssociation(response.data);
       })
@@ -92,12 +92,9 @@ const AddEvents = ({ route }) => {
                 <TouchableOpacity
                   onPress={() => {
                     if (item.email === id) {
-                      navigation.navigate("AssociationProfile", {
-                        
-                      });
+                      navigation.navigate("AssociationProfile", {});
                     } else {
                       navigation.navigate("VisterProfile", {
-                        
                         idd: item.email,
                       });
                     }
@@ -138,7 +135,7 @@ const styles = StyleSheet.create({
     width: CARD_WIDTH,
     height: CARD_HEIGTH,
     marginVertical: 2,
-    left:10
+    left: 10,
   },
   favorite: {
     position: "absolute",

@@ -114,11 +114,11 @@ const Profile = () => {
             <Box maxW="100%" maxH="690">
               <Box>
                 <AspectRatio w="100%" ratio={20 / 15}>
-                  <Image
+                  {/* <Image
                     resizeMode="contain"
                     source={{ uri: user.image }}
                     alt="image"
-                  />
+                  /> */}
                 </AspectRatio>
               </Box>
               <Stack p="3" space={5}>
